@@ -7,13 +7,13 @@ import Trending from './Trending';
 const Home = () => {
     return (
         <Container>
-        <div className='grid grid-cols-4 gap-3 pt-10'>
+            <div className='grid grid-cols-4 gap-3 py-10'>
                 <InformationSide></InformationSide>
                     <div className='col-span-2'>
                         <PostsShowCasing></PostsShowCasing>
                     </div>
                 <Trending></Trending>
-        </div>
+            </div>
         </Container>
     );
 };
