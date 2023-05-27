@@ -5,7 +5,7 @@ import routes from './Routes/Routes';
 
 function App() {
   return (
-    <div className=" bg-secondary min-h-screen">
+    <div className=" bg-secondary min-h-screen webBg">
       <RouterProvider router={routes}></RouterProvider>
       <Toaster></Toaster>
     </div>

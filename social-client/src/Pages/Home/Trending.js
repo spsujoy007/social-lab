@@ -1,11 +1,11 @@
 import React from 'react';
 
-const PostsShowCasing = () => {
+const Trending = () => {
     return (
         <div className='text-center bg-white'>
-            post show casing
+            Trend
         </div>
     );
 };
 
-export default PostsShowCasing;
+export default Trending;

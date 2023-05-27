@@ -1,0 +1,6 @@
+.commonShadow{
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.09), 
+        -10px -10px 30px white
+    ;
+    /* backdrop-filter: blur(100px) */
+}
