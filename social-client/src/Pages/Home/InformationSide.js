@@ -6,8 +6,7 @@ import SuggestionProfiles from './SuggestionProfiles/SuggestionProfiles';
 
 const InformationSide = () => {
     return (
-        <div >
-
+        <div className='top-10 sticky'>
 
                 <div className='bg-whiterounded-xl rounded-xl overflow-hidden bg-[#ffffff] commonShadow pb-8'>
                     
@@ -42,7 +41,7 @@ const InformationSide = () => {
 
                 </div>
                 
-                <button className='bg-gradient-to-r from-primary to-[#00b1cc] text-white px-16 py-3 rounded-xl text-lg hover:scale-95 duration-300'>
+                <button className='bg-gradient-to-r from-primary to-[#8AD7D1] text-white px-16 py-3 rounded-xl text-lg hover:scale-95 duration-300'>
                     View Profile
                 </button>
 

@@ -25,7 +25,7 @@ const SuggestionProfiles = () => {
     ]
 
     return (
-        <div className='bg-whiterounded-xl rounded-xl overflow-hidden bg-[#ffffff]  p-5 mt-5 '>
+        <div className='bg-whiterounded-xl rounded-xl overflow-hidden bg-[#ffffff81]  p-5 mt-5 '>
             <div>
                 <h3 className='text-lg text-black'>People you may know</h3>
 

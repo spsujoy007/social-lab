@@ -12,8 +12,8 @@ const PostCard = ({post}) => {
 
     return (
         <div className='rounded-xl overflow-hidden bg-white commonShadow p-5'>
-            <div className='w-full rounded-xl h-[400px] flex items-center overflow-hidden'>
-                <img className='' src={postImage} alt="" />
+            <div className='w-full rounded-xl md:h-[400px] min-h-[200px] flex items-center overflow-hidden'>
+                <figure><img className='rounded-xl' src={postImage} alt="" /></figure>
             </div>
             <h3 className={`text-xl ${title.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{title}</h3>
 

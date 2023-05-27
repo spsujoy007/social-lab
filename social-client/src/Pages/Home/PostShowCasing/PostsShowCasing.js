@@ -25,11 +25,23 @@ const PostsShowCasing = () => {
             userName: "Asadullah al Galib",
             email: "galib@gmail.com"
         },
+        {
+            _id: "3",
+            profileImg: "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
+            postImage: "https://images.pexels.com/photos/1214566/pexels-photo-1214566.jpeg?cs=srgb&dl=pexels-hassan-ouajbir-1214566.jpg&fm=jpg",
+            title: "Lorem ipsum dolor sit amet consectetur.",
+            post_date: '10-5-2023',
+            post_time: '10: 20',
+            userName: "Sujoy Paul",
+            email: "sujoy@gmail.com"
+        },
     ]
 
     return (
         <div className=' '>
-            <CreatePostHome></CreatePostHome>
+            <div className='mb-6'>
+                <CreatePostHome></CreatePostHome>
+            </div>
             <div className='grid grid-cols-1 gap-5'>
             {
                 posts.map(post => <PostCard

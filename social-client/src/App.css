@@ -6,6 +6,7 @@
   background-image: url('././assests/bacgkround-img.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .App-logo {
