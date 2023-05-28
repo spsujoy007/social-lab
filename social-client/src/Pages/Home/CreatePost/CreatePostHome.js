@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { IoMdImages } from "react-icons/io"
 import { HiOutlineLocationMarker } from "react-icons/hi"
+import { TbPhotoPlus } from "react-icons/tb"
 import profileImg from '../../../assests/profileimg.jpg'
 import ModalCommon from '../../../Components/ModalCommon';
-import ButtonCommon from '../../../Components/ButtonCommon';
 
 const CreatePostHome = () => {
+
+    const [selectPhoto, setSelectPhoto] = useState(true)
+    // const [viewImage, setViewImage] = useState('')
+    
+    const handleSelectPhoto = (e) => {
+        const imgs = e.target.file
+        // const img = URL.createObjectURL(selectedImage)
+        console.log(imgs)
+
+    }
 
     return (
         <div className='bg-white p-3 rounded-xl'>
@@ -24,10 +34,10 @@ const CreatePostHome = () => {
 
             {/* action buttons image and location ======================================== */}
             <div className='md:ml-16 mt-3 flex items-center' style={{userSelect: 'none'}}>
-                <label className={`text-2xl hover:bg-gray-100 p-2 px-6 rounded-xl text-primary flex items-center gap-x-1 cursor-pointer hover:text-black duration-300`} htmlFor="create_postModal" >
+                <label onClick={() => setSelectPhoto(!selectPhoto)} className={`text-2xl hover:bg-gray-100 p-2 md:px-6 px-2 rounded-xl text-primary flex items-center gap-x-1 cursor-pointer hover:text-black duration-300`} htmlFor="create_postModal" >
                     <IoMdImages></IoMdImages> <span className='text-lg text-black'>Photo</span>
                 </label>
-                <label className={`text-2xl hover:bg-gray-100 p-2 px-6 rounded-xl text-yellow-500 flex items-center gap-x-1 cursor-pointer hover:text-black duration-300`} htmlFor="create_postModal" >
+                <label className={`text-2xl hover:bg-gray-100 p-2 md:px-6 px-2 rounded-xl text-yellow-500 flex items-center gap-x-1 cursor-pointer hover:text-black duration-300`} htmlFor="create_postModal" >
                     <HiOutlineLocationMarker></HiOutlineLocationMarker> <span className='text-lg  text-black'>Location</span> 
                 </label>
             </div>
@@ -47,15 +57,32 @@ const CreatePostHome = () => {
                 </div>
                 </div>
 
-                <textarea className='w-full min-h-[120px] bg-white text-xl outline-none mt-5' placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
+                <textarea className={`w-full ${!selectPhoto ? "60px" : 'min-h-[120px]' } bg-white text-xl outline-none mt-5`} placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
+
+                {/* select photo div  */}
+                <div className={`border-[1px] border-primary p-2 mb-2 rounded-md ${selectPhoto ?  "hidden scale-0" : 'block scale-100'} duration-300`}>
+                    <label htmlFor="photoSelector" className='rounded-md'>
+                        <div className='bg-gray-200  flex flex-col items-center text-center p-5 w-full rounded-md'>
+                            <div className='flex justify-center mb-4'>
+                                <TbPhotoPlus className='text-4xl text-primary'></TbPhotoPlus>
+                            </div>
+                            <h5 className='text-md font-bold text-black'>Select Photo</h5>
+                            <p className='text-sm'>or drag and drop</p>
+                        </div>
+                    </label>
+                    <input onChange={(e) => handleSelectPhoto(e)} className='hidden' id='photoSelector' type="file" accept='.png, .jpg' name="image" />
+                </div>
                 
-                <div className='bg-gray-200 rounded-md flex items-center py-1 px-3 justify-between'>
+
+                {/* add in image and location section  */}
+                <div className='bg-gray-200 rounded-md flex items-center py-1 px-3 justify-between '>
                     <h4 className='text-black'>Add in image</h4>
                     <div className='flex items-center '>
-                    <div className='px-5 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer'>
+
+                    <div onClick={() => setSelectPhoto(!selectPhoto)} className={`md:px-5 px-2 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer ${!selectPhoto && 'bg-gray-100'}`}>
                         <IoMdImages className='text-3xl text-primary'></IoMdImages>
                     </div>
-                    <div className='px-5 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer' >
+                    <div className='md:px-5 px-2 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer' >
                         <HiOutlineLocationMarker  className='text-3xl text-primary'></HiOutlineLocationMarker>
                     </div>
                 </div>
