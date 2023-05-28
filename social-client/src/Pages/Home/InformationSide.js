@@ -5,6 +5,7 @@ import './Home.css'
 import SuggestionProfiles from './SuggestionProfiles/SuggestionProfiles';
 
 const InformationSide = () => {
+
     return (
         <div className='top-10 sticky'>
 

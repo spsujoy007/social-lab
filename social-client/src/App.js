@@ -2,6 +2,7 @@ import { RouterProvider } from 'react-router-dom';
 import './App.css';
 import { Toaster } from 'react-hot-toast';
 import routes from './Routes/Routes';
+import ModalCommon from './Components/ModalCommon';
 
 function App() {
   return (

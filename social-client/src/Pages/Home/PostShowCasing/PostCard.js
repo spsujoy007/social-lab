@@ -5,7 +5,6 @@ import { TbShare3 } from 'react-icons/tb'
 const PostCard = ({post}) => {
 
     const {_id, profileImg, postImage, title, userName, email, post_time} = post
-    console.log(title.length)
 
     // button icons design css 
     const iconButtonDesign = `text-3xl hover:text-primary duration-300`
@@ -15,7 +14,16 @@ const PostCard = ({post}) => {
             <div className='w-full rounded-xl md:h-[400px] min-h-[200px] flex items-center overflow-hidden'>
                 <figure><img className='rounded-xl' src={postImage} alt="" /></figure>
             </div>
-            <h3 className={`text-xl ${title.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{title}</h3>
+            {
+                title.length > 300 ?
+                <>
+                    <h3 className={`${title.length < 100 && 'text-xl'} ${title.length > 100 && 'text-lg'} ${title.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{title.length > 300 ? `${title.slice(0, 300)}...`: `${title}`}</h3>
+                </>
+                :
+                <>
+                    <h3 className={`${title.length < 100 && 'text-xl'} ${title.length > 100 && 'text-lg'} ${title.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{title}</h3>
+                </>
+            }
 
             {/* user info and other oparations */}
             <div className='mt-4 flex items-center justify-between'>
