@@ -9,7 +9,7 @@ const SingleProfile = ({ profile }) => {
     <div className="mb-5 flex items-center gap-x-4">
 
       <div className="avatar">
-        <div className="w-14 rounded-full">
+        <div className="w-10 rounded-full">
             <img className="avatar" src={profileImg} alt="" />
         </div>
       </div>
@@ -17,10 +17,10 @@ const SingleProfile = ({ profile }) => {
       <div className="flex items-center justify-between w-full">
         <div>
             <h5 className="text-lg text-black font-[400] ">
-                {userName.length < 16 ? `${userName}` : `${userName.slice(0,16)}...`}
+                {userName.length < 12 ? `${userName}` : `${userName.slice(0,12)}...`}
                 {/* {userName} */}
             </h5>
-            <h6 className="my-0 text-sm">{email}</h6>
+            <h6 className="my-0 text-xs">{email}</h6>
         </div>
 
         <div>
