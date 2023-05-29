@@ -3,11 +3,16 @@ import coverPic from '../../assests/coverpic.jpg'
 import profileImg from '../../assests/profileimg.jpg'
 import './Home.css'
 import SuggestionProfiles from './SuggestionProfiles/SuggestionProfiles';
+import SearchBar from './SearchBarItem/SearchBar';
 
 const InformationSide = () => {
 
     return (
         <div className='top-10 sticky'>
+
+                    <div className='lg:mb-10 mt-7 lg:block hidden'>
+                        <SearchBar></SearchBar>
+                    </div>
 
                 <div className='bg-whiterounded-xl rounded-xl overflow-hidden bg-[#ffffff] commonShadow pb-8'>
                     
@@ -25,7 +30,7 @@ const InformationSide = () => {
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, architecto!</p>
 
 
-                <div className='flex mx-auto text-center border-t-2 border-b-2 mt-5 py-2 mb-5'>
+                <div className='flex mx-auto text-center mt-5 py-2 mb-5'>
                     <div className='w-1/2 text-center'>
                         <p className='text-2xl font-bold text-[#323232]'>10k</p>
                         <p className='mt-1 text-lg'>Followers</p>

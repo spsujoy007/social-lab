@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IoMdImages } from "react-icons/io"
+import { IoMdClose, IoMdImages } from "react-icons/io"
 import { HiOutlineLocationMarker } from "react-icons/hi"
 import { TbPhotoPlus } from "react-icons/tb"
 import profileImg from '../../../assests/profileimg.jpg'
@@ -8,12 +8,13 @@ import ModalCommon from '../../../Components/ModalCommon';
 const CreatePostHome = () => {
 
     const [selectPhoto, setSelectPhoto] = useState(true)
-    // const [viewImage, setViewImage] = useState('')
+    const [viewImage, setViewImage] = useState('')
     
     const handleSelectPhoto = (e) => {
-        const imgs = e.target.file
-        // const img = URL.createObjectURL(selectedImage)
-        console.log(imgs)
+        const imgs = e.target.files[0]
+        const img = URL.createObjectURL(imgs)
+        setViewImage(img)
+        // console.log(imgs)
 
     }
 
@@ -44,7 +45,6 @@ const CreatePostHome = () => {
 
         <ModalCommon>
             <div>
-                
                 <div className='flex items-center gap-x-2'>
                 <div className="avatar">
                     <div className="w-12 rounded-full">
@@ -57,20 +57,32 @@ const CreatePostHome = () => {
                 </div>
                 </div>
 
-                <textarea className={`w-full ${!selectPhoto ? "60px" : 'min-h-[120px]' } bg-white text-xl outline-none mt-5`} placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
+                <textarea className={`w-full text-black ${!selectPhoto ? "60px" : 'min-h-[120px]' } bg-white text-xl outline-none mt-5`} placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
 
                 {/* select photo div  */}
-                <div className={`border-[1px] border-primary p-2 mb-2 rounded-md ${selectPhoto ?  "hidden scale-0" : 'block scale-100'} duration-300`}>
-                    <label htmlFor="photoSelector" className='rounded-md'>
-                        <div className='bg-gray-200  flex flex-col items-center text-center p-5 w-full rounded-md'>
-                            <div className='flex justify-center mb-4'>
-                                <TbPhotoPlus className='text-4xl text-primary'></TbPhotoPlus>
+                <div className={`border-[1px] border-primary p-2 mb-2 rounded-md ${selectPhoto ?  "hidden" : 'block'} duration-300`}>
+                    {
+                        viewImage ?
+                        <div>
+                            <div className='flex justify-end -mb-[45px] mr-[10px] p-2'>
+                                <IoMdClose onClick={() => setViewImage('')} className='text-black text-3xl bg-[#ffffffc0] shadow-xl rounded-full z-20 cursor-pointer'></IoMdClose>
                             </div>
-                            <h5 className='text-md font-bold text-black'>Select Photo</h5>
-                            <p className='text-sm'>or drag and drop</p>
+                            <img className='rounded-md' src={viewImage} alt="" />
                         </div>
-                    </label>
-                    <input onChange={(e) => handleSelectPhoto(e)} className='hidden' id='photoSelector' type="file" accept='.png, .jpg' name="image" />
+                        :
+                        <div>
+                            <label htmlFor="photoSelector" className='rounded-md'>
+                                <div className='bg-gray-200  flex flex-col items-center text-center p-5 w-full rounded-md'>
+                                    <div className='flex justify-center mb-4'>
+                                        <TbPhotoPlus className='text-4xl text-primary'></TbPhotoPlus>
+                                    </div>
+                                    <h5 className='text-md font-bold text-black'>Select Photo</h5>
+                                    <p className='text-sm'>click to add photo</p>
+                                </div>
+                            </label>
+                            <input onChange={(e) => handleSelectPhoto(e)} className='hidden' id='photoSelector' type="file" accept='.png, .jpg' name="image" />
+                        </div>
+                    }
                 </div>
                 
 

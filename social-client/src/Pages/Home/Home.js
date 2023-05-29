@@ -3,21 +3,29 @@ import InformationSide from './InformationSide';
 import Container from '../../Components/Container';
 import Trending from './Trending';
 import PostsShowCasing from './PostShowCasing/PostsShowCasing';
+import SearchBar from './SearchBarItem/SearchBar';
 
 const Home = () => {
     return (
         <Container>
-            <div className='grid lg:grid-cols-4 grid-cols-1 gap-6 md:py-10 p-3'>
+            <div className='grid lg:grid-cols-4 grid-cols-1 gap-6 md:py-10 lg:p-3'>
 
-                <div className='md:block hidden'>
+                <div className='lg:block hidden'>
                     <InformationSide></InformationSide>
                 </div>
 
                 <div className='col-span-2'>
-                    <PostsShowCasing></PostsShowCasing>
+                    <div className='lg:hidden block bg-white pb-2 pt-4 px-5 fixed z-50 w-full'>
+                        <SearchBar></SearchBar>
+                    </div>
+                    <div className='mt-24 lg:mt-7'>
+                        <PostsShowCasing></PostsShowCasing>
+                    </div>
                 </div>
 
-                {/* <Trending></Trending> */}
+                <div>
+                    <Trending></Trending>
+                </div>
             </div>
         </Container>
     );
