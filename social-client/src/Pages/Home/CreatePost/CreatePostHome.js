@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoMdClose, IoMdImages } from "react-icons/io"
 import { HiOutlineLocationMarker } from "react-icons/hi"
 import { TbPhotoPlus } from "react-icons/tb"
 import profileImg from '../../../assests/profileimg.jpg'
 import ModalCommon from '../../../Components/ModalCommon';
+import { crudContext } from '../../../Context/DataProvider';
 
 const CreatePostHome = () => {
 
+    const {userData} = useContext(crudContext)
+    console.log(userData)
     const [selectPhoto, setSelectPhoto] = useState(true)
     const [viewImage, setViewImage] = useState('')
     
@@ -23,7 +26,7 @@ const CreatePostHome = () => {
             <div className='flex items-center gap-x-4'>
                 <div className="avatar">
                     <div className="w-12 rounded-full">
-                        <img className="avatar" src={profileImg} alt="" />
+                        <img className="avatar" src={userData.photoURL} alt="" />
                     </div>
                 </div>
 

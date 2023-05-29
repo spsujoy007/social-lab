@@ -1,9 +1,13 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from './AuthProvider';
 
 export const crudContext = createContext()
 
 const DataProvider = ({children}) => {
+    const [userData, setUserData] = useState({})
+
+    const {user} = useContext(AuthContext)
 
     // create user and store data to the database 
     async function createUserForDB(getUserDetails) {
@@ -23,9 +27,27 @@ const DataProvider = ({children}) => {
         }
     }
 
+
+
+    // function GetUserData() {
+        useEffect(() => {
+            fetch(`http://localhost:5000/userdata?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setUserData(data)
+                return data
+            })
+        }, [user?.email])
+    // }
+
+
+
+    //[*****************************************************************************************]
     const datasValue = {
-        createUserForDB
+        createUserForDB,
+        userData,
     }
+    //[*****************************************************************************************]
 
     return (
         <div>
