@@ -1,15 +1,29 @@
 import React, { useContext, useState } from "react";
 import { useLottie } from "lottie-react";
 import loginManAnimatin from "../../assests/logingif.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Home/Home.css";
 import { AuthContext } from "../../Context/AuthProvider";
+import { crudContext } from "../../Context/DataProvider";
+import { toast } from "react-hot-toast";
+
+import { CloudinaryContext, Image } from 'cloudinary-react';
+
+// Set up Cloudinary configuration
+// cloudinary.config({
+//   cloud_name: 'YOUR_CLOUD_NAME',
+//   api_key: 'YOUR_API_KEY',
+//   api_secret: 'YOUR_API_SECRET'
+// });
+
 
 const Singup = () => {
-  const { user, createUser } = useContext(AuthContext);
-  // console.log(user);
-  const [profilePic, setProfiePic] = useState("");
-  const [selectedImg, setSelectedImg] = useState("");
+  const { createUser } = useContext(AuthContext);
+  const {createUserForDB} = useContext(crudContext)
+  const navigate= useNavigate('')
+  
+  const [profilePic, setProfiePic] = useState(""); //get only file of image
+  const [selectedImg, setSelectedImg] = useState(""); //get temporary image url
 
   const options = {
     animationData: loginManAnimatin,
@@ -24,36 +38,54 @@ const Singup = () => {
     setSelectedImg(url);
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
 
-    const photo = profilePic;
+    // const photo = urlOfImage;
     const first_name = form.first_name.value;
     const last_name = form.last_name.value;
     const full_name = first_name + ' ' + last_name;
     const mobile = form.phone.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(
-      photo,
-      first_name,
-      last_name,
-      full_name,
-      mobile,
-      email,
-      password
-    );
-    createUser(email, password)
-    .then(result => {
-      console.log(result.user)
-    })
-    .catch(e => console.error(e))
-    
+
+      const formData = new FormData()
+      formData.append('file', profilePic)
+      formData.append('upload_preset', 'social-lab');
+      formData.append('cloud_name', 'dfxhlbsf2');
+      fetch(`https://api.cloudinary.com/v1_1/dfxhlbsf2/upload`, {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+
+        createUser(email, password) // for  google sign
+        .then(result => {
+          if(result.user.uid){
+            const userDatas = {
+              photoURL: data.url,
+              first_name,
+              last_name,
+              full_name,
+              mobile,
+              email,
+              password
+            }
+            // for store the data of user in backend 
+            createUserForDB(userDatas)
+            navigate('/')
+            toast.success("Account created")
+          }
+        })
+        .catch(e => console.error(e))
+      })
+
 
 
   };
-
+  
 
   return (
     <div className="flex items-center justify-center h-[100vh] ">
@@ -67,7 +99,7 @@ const Singup = () => {
 
             <div className="mt-5 w-[500px]">
               {/* select Photo of id  */}
-              <div className="bg-[#ffffff65] commonShadow p-3 mb-6 rounded-full">
+              <div className="bg-transparent  p-3 mb-6 rounded-full">
                 <label
                   htmlFor="selectPhoto"
                   className="flex items-center gap-5 text-black"

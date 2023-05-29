@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GrFormClose } from 'react-icons/gr'
+import './ModalCommon.css'
 
 const ModalCommon = ({children}) => {
     // console.log(visible)
@@ -12,8 +13,8 @@ const ModalCommon = ({children}) => {
     return (
         <div>
             <input type="checkbox" id="create_postModal" className="modal-toggle" />
-            <div className="modal bg-[#474747b1]">
-                <div className="modal-box relative bg-white">
+            <div className="modal bg-[#ffffff81]">
+                <div className="modal-box relative container ">
                     <label htmlFor="create_postModal" className="btn btn-sm btn-black btn-circle absolute right-2 top-2">✕</label>
                 <div className=''>
                     {children}

@@ -57,7 +57,7 @@ const CreatePostHome = () => {
                 </div>
                 </div>
 
-                <textarea className={`w-full text-black ${!selectPhoto ? "60px" : 'min-h-[120px]' } bg-white text-xl outline-none mt-5`} placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
+                <textarea className={`w-full rounded-md  p-3 text-black placeholder:text-gray-400 ${!selectPhoto ? "min-h-[60px]" : 'min-h-[120px]' } bg-transparent text-lg outline-none mt-5`} placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
 
                 {/* select photo div  */}
                 <div className={`border-[1px] border-primary p-2 mb-2 rounded-md ${selectPhoto ?  "hidden" : 'block'} duration-300`}>
@@ -72,12 +72,12 @@ const CreatePostHome = () => {
                         :
                         <div>
                             <label htmlFor="photoSelector" className='rounded-md'>
-                                <div className='bg-gray-200  flex flex-col items-center text-center p-5 w-full rounded-md'>
+                                <div className='bg-white commonShadow flex flex-col items-center text-center px-5 py-10 w-full rounded-md'>
                                     <div className='flex justify-center mb-4'>
                                         <TbPhotoPlus className='text-4xl text-primary'></TbPhotoPlus>
                                     </div>
                                     <h5 className='text-md font-bold text-black'>Select Photo</h5>
-                                    <p className='text-sm'>click to add photo</p>
+                                    <p className='text-sm'>click to add a photo</p>
                                 </div>
                             </label>
                             <input onChange={(e) => handleSelectPhoto(e)} className='hidden' id='photoSelector' type="file" accept='.png, .jpg' name="image" />
@@ -87,12 +87,12 @@ const CreatePostHome = () => {
                 
 
                 {/* add in image and location section  */}
-                <div className='bg-gray-200 rounded-md flex items-center py-1 px-3 justify-between '>
-                    <h4 className='text-black'>Add in image</h4>
+                <div className='bg-white rounded-md flex items-center py-1 px-3 justify-between '>
+                    <h4 className='text-black text-sm'>Add in image</h4>
                     <div className='flex items-center '>
 
-                    <div onClick={() => setSelectPhoto(!selectPhoto)} className={`md:px-5 px-2 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer ${!selectPhoto && 'bg-gray-100'}`}>
-                        <IoMdImages className='text-3xl text-primary'></IoMdImages>
+                    <div onClick={() => setSelectPhoto(!selectPhoto)} className={`md:px-5 px-2 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer ${!selectPhoto && 'text-black'}`}>
+                        <IoMdImages className='text-3xl '></IoMdImages>
                     </div>
                     <div className='md:px-5 px-2 hover:bg-gray-100 duration-300 py-2 rounded-xl cursor-pointer' >
                         <HiOutlineLocationMarker  className='text-3xl text-primary'></HiOutlineLocationMarker>

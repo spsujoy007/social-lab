@@ -21,11 +21,16 @@ const client = new MongoClient(uri, {
 
 
 async function run(){
-
     try{
         const usersCollection = client.db('Social-Lab').collection("users");
-
         
+        app.post('/createuser', async(req, res) => {
+            const userDetail = req.body;
+            console.log(userDetail)
+            const result = await usersCollection.insertOne(userDetail);
+            res.send(result)
+        })
+
         app.get('/getAllUsers', async(req, res) => {
             const result = await usersCollection.find({}).toArray()
             res.send(result)
@@ -33,7 +38,6 @@ async function run(){
     }
 
     finally{}
-
 }
 run().catch(error => console.error(error))
 
