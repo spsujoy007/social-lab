@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import coverPic from '../../assests/coverpic.jpg'
 import profileImg from '../../assests/profileimg.jpg'
 import './Home.css'
 import SuggestionProfiles from './SuggestionProfiles/SuggestionProfiles';
 import SearchBar from './SearchBarItem/SearchBar';
+import { AuthContext } from '../../Context/AuthProvider';
+import { useQuery } from 'react-query';
+import { crudContext } from '../../Context/DataProvider';
 
 const InformationSide = () => {
+    const {user} = useContext(AuthContext)
+    const {getuserinfo: userdata} = useContext(crudContext)
 
     return (
         <div className='top-10 sticky'>
@@ -22,11 +27,14 @@ const InformationSide = () => {
 
                 {/* profile images  */}
                 <div className='w-[160px] h-[160px] rounded-full overflow-hidden mx-auto -mt-[80px] z-10 border-4 border-x-primary'>
-                    <img className='z-10' src={profileImg} alt="profile_image" />
+                    {/* user photo ############################################################### */}
+                    <img className='z-10' src={userdata?.photoURL} alt="profile_image" />
+                    {/* <img className='z-10' src="http://res.cloudinary.com/dfxhlbsf2/image/upload/v1685387813/w2guc7pppvxvgzy92tfq.jpg" alt="profile_image" /> */}
                 </div>
 
                 <div className='mt-3 text-center px-7'>
-                    <h3 className=' font-bold text-2xl text-[#323232]'>Johnson Baby</h3>
+                    {/* user name and bio  ########################################### */}
+                    <h3 className=' font-bold text-2xl text-[#323232]'>{userdata.full_name}</h3>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, architecto!</p>
 
 

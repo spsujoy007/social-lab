@@ -7,16 +7,6 @@ import { AuthContext } from "../../Context/AuthProvider";
 import { crudContext } from "../../Context/DataProvider";
 import { toast } from "react-hot-toast";
 
-import { CloudinaryContext, Image } from 'cloudinary-react';
-
-// Set up Cloudinary configuration
-// cloudinary.config({
-//   cloud_name: 'YOUR_CLOUD_NAME',
-//   api_key: 'YOUR_API_KEY',
-//   api_secret: 'YOUR_API_SECRET'
-// });
-
-
 const Singup = () => {
   const { createUser } = useContext(AuthContext);
   const {createUserForDB} = useContext(crudContext)
@@ -24,6 +14,7 @@ const Singup = () => {
   
   const [profilePic, setProfiePic] = useState(""); //get only file of image
   const [selectedImg, setSelectedImg] = useState(""); //get temporary image url
+  const [loading, setLoading] = useState(false)
 
   const options = {
     animationData: loginManAnimatin,
@@ -41,6 +32,7 @@ const Singup = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
+    setLoading(true)
 
     // const photo = urlOfImage;
     const first_name = form.first_name.value;
@@ -77,6 +69,7 @@ const Singup = () => {
             createUserForDB(userDatas)
             navigate('/')
             toast.success("Account created")
+            setLoading(false)
           }
         })
         .catch(e => console.error(e))
@@ -195,9 +188,16 @@ const Singup = () => {
               </div>
 
               <div className="mt-5">
-                <button type="submit" className="w-full bg-primary px-5 py-2 text-white rounded-md">
-                  Sign up
-                </button>
+                {
+                  loading ?
+                  <button type="submit" className="w-full bg-primary loading px-5 py-2 text-white rounded-md">
+                    Account creating...
+                  </button>
+                  :
+                  <button type="submit" className="w-full bg-primary px-5 py-2 text-white rounded-md">
+                    Sign up
+                  </button>
+                }
 
                 <p className="mt-2 text-black">
                   If you already have an account please{" "}

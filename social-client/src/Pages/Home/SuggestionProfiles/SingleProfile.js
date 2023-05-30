@@ -23,7 +23,7 @@ const SingleProfile = ({ profile }) => {
             <h6 className="my-0 text-xs">{email}</h6>
         </div>
 
-        <div>
+        <div className="text-sm">
             <FollowButton>Follow <SlUserFollow></SlUserFollow> </FollowButton>
         </div>
         

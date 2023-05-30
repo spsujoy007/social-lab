@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from './AuthProvider';
+import { useQueries, useQuery } from 'react-query';
 
 export const crudContext = createContext()
 
 const DataProvider = ({children}) => {
-    const [userData, setUserData] = useState({})
 
     const {user} = useContext(AuthContext)
 
@@ -28,26 +28,25 @@ const DataProvider = ({children}) => {
     }
 
 
+    const {data: getuserinfo = [], refetch, isLoading} = useQuery({
+        queryKey: ['getuserinfo'],
+        queryFn: async () => {
+            // const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/userdata?email=sujoypaul728@gmail.com`)
+            const data = await res.json()
+            return data
+        },
+    })
 
-    // const [] = useQu 
-
-    // function GetUserData() {
-        useEffect(() => {
-            fetch(`http://localhost:5000/userdata?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setUserData(data)
-                return data
-            })
-        }, [user?.email])
-    // }
+    
 
 
 
     //[*****************************************************************************************]
     const datasValue = {
         createUserForDB,
-        userData,
+        getuserinfo,
+        refetch
     }
     //[*****************************************************************************************]
 

@@ -23,32 +23,44 @@ const client = new MongoClient(uri, {
 async function run(){
     try{
         const usersCollection = client.db('Social-Lab').collection("users");
+        const postCollection = client.db('Social-Lab').collection("posts");
         
         app.post('/createuser', async(req, res) => {
             const userDetail = req.body;
             console.log(userDetail)
             const result = await usersCollection.insertOne(userDetail);
             res.send(result)
+        }) //create account and get data of user
+
+        app.post('/createpost', async(req, res) => {
+          const email = req.query.email;
+          const verifieduser = usersCollection.findOne({email: email});
+          if(verifieduser){
+              const post_data = req.body;
+              const result = await postCollection.insertOne(post_data);
+              res.send(result)
+          }
+          else{
+            res.send("not verified user")
+          }
         })
 
         app.get('/userdata', async(req, res) => {
           const email = req.query.email
           const query = {email: email};
           const getuser = await usersCollection.findOne(query)
-          res.send(getuser) 
-        })
+          res.send(getuser)
+        }) //get single user data
 
         app.get('/getAllUsers', async(req, res) => {
             const result = await usersCollection.find({}).toArray()
             res.send(result)
-        })
+        }) //get all user data
     }
 
     finally{}
 }
 run().catch(error => console.error(error))
-
-
 
 
 

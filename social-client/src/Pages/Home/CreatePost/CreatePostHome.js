@@ -8,8 +8,8 @@ import { crudContext } from '../../../Context/DataProvider';
 
 const CreatePostHome = () => {
 
-    const {userData} = useContext(crudContext)
-    console.log(userData)
+    const {getuserinfo: userdata} = useContext(crudContext)
+
     const [selectPhoto, setSelectPhoto] = useState(true)
     const [viewImage, setViewImage] = useState('')
     
@@ -17,16 +17,21 @@ const CreatePostHome = () => {
         const imgs = e.target.files[0]
         const img = URL.createObjectURL(imgs)
         setViewImage(img)
-        // console.log(imgs)
 
     }
+
+    const handleSubmitPost = (e) => {
+
+    }
+
 
     return (
         <div className='bg-white p-3 rounded-xl'>
             <div className='flex items-center gap-x-4'>
                 <div className="avatar">
                     <div className="w-12 rounded-full">
-                        <img className="avatar" src={userData.photoURL} alt="" />
+                        {/* user photo ###################################### */}
+                        <img className="avatar" src={userdata?.photoURL} alt="" />
                     </div>
                 </div>
 
@@ -47,20 +52,23 @@ const CreatePostHome = () => {
             </div>
 
         <ModalCommon>
+            <form onSubmit={handleSubmitPost}>
             <div>
                 <div className='flex items-center gap-x-2'>
                 <div className="avatar">
                     <div className="w-12 rounded-full">
-                        <img className="avatar" src={profileImg} alt="" />
+                        {/* ?############################################# */}
+                        <img className="avatar" src={userdata?.photoURL} alt="" />
                     </div>
                 </div>
                 <div>
-                    <h5 className='text-black'>Johnson Baby</h5>
+                    {/* ############################################################## */}
+                    <h5 className='text-black'>{userdata?.full_name}</h5>
                     <span className='text-sm'>28/05/2023</span>
                 </div>
                 </div>
 
-                <textarea className={`w-full rounded-md  p-3 text-black placeholder:text-gray-400 ${!selectPhoto ? "min-h-[60px]" : 'min-h-[120px]' } bg-transparent text-lg outline-none mt-5`} placeholder={`What's going on, Johnson?`} name="" id=""></textarea>
+                <textarea name="caption" className={`w-full rounded-md  p-3 text-black placeholder:text-gray-400 ${!selectPhoto ? "min-h-[60px]" : 'min-h-[120px]' } bg-transparent text-lg outline-none mt-5`} placeholder={`What's going on, ${userdata?.first_name}?`} id=""></textarea>
 
                 {/* select photo div  */}
                 <div className={`border-[1px] border-primary p-2 mb-2 rounded-md ${selectPhoto ?  "hidden" : 'block'} duration-300`}>
@@ -105,9 +113,10 @@ const CreatePostHome = () => {
 
                 {/* post button here ******************* */}
                 <div>
-                    <button className='w-full bg-primary text-white py-2 rounded-md mt-5'>POST</button>
+                    <button type='submit' className='w-full bg-primary text-white py-2 rounded-md mt-5'>POST</button>
                 </div>
             </div>
+            </form>
         </ModalCommon>
         </div>
     );

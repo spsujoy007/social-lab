@@ -4,7 +4,7 @@ import { TbShare3 } from 'react-icons/tb'
 
 const PostCard = ({post}) => {
 
-    const {_id, profileImg, postImage, title, userName, email, post_time} = post
+    const {_id, profileImg, postImage, caption, userName, email, post_time} = post
 
     // button icons design css 
     const iconButtonDesign = `text-3xl hover:text-primary duration-300`
@@ -15,13 +15,13 @@ const PostCard = ({post}) => {
                 <figure><img className='rounded-xl' src={postImage} alt="" /></figure>
             </div>
             {
-                title.length > 300 ?
+                caption.length > 300 ?
                 <>
-                    <h3 className={`${title.length < 100 && 'text-xl'} ${title.length > 100 && 'text-lg'} ${title.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{title.length > 300 ? `${title.slice(0, 300)}...`: `${title}`}</h3>
+                    <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} ${caption.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{caption.length > 300 ? `${caption.slice(0, 300)}...`: `${caption}`}</h3>
                 </>
                 :
                 <>
-                    <h3 className={`${title.length < 100 && 'text-xl'} ${title.length > 100 && 'text-lg'} ${title.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{title}</h3>
+                    <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} ${caption.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{caption}</h3>
                 </>
             }
 

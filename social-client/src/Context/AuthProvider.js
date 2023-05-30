@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut} from 'firebase/auth'
 import app from '../firebase/firebase.config';
@@ -28,10 +28,15 @@ const AuthProvider = ({children}) => {
         return () => unSubscribe()
     }, [])
 
+    const getUserData = () => {
+
+    }
+    
     const authValue = {
         user,
         createUser,
-        logOut
+        logOut,
+        getUserData
     }
     return (
         <div>
