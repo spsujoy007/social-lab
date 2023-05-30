@@ -5,14 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './Context/AuthProvider';
 import DataProvider from './Context/DataProvider';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+
+// Create a client
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
+    <QueryClientProvider client={queryClient}>
       <DataProvider>
         <App />
       </DataProvider>
+    </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>
 );
