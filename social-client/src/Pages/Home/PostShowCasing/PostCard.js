@@ -4,24 +4,35 @@ import { TbShare3 } from 'react-icons/tb'
 
 const PostCard = ({post}) => {
 
-    const {_id, profileImg, postImage, caption, userName, email, post_time} = post
+    const {_id, profileImg, postImage, caption, name, email, post_time} = post
 
     // button icons design css 
     const iconButtonDesign = `text-3xl hover:text-primary duration-300`
 
     return (
         <div className='rounded-xl overflow-hidden bg-white commonShadow p-5'>
-            <div className='w-full rounded-xl md:h-[400px] min-h-[200px] flex items-center overflow-hidden'>
+            {
+                postImage && <div className='w-full rounded-xl md:min-h-[200px] md:max-h-[400px] min-h-[200px] flex items-center  justify-center overflow-hidden'>
                 <figure><img className='rounded-xl' src={postImage} alt="" /></figure>
             </div>
+            }
             {
-                caption.length > 300 ?
+                postImage === "" ?
                 <>
-                    <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} ${caption.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{caption.length > 300 ? `${caption.slice(0, 300)}...`: `${caption}`}</h3>
+                <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2`}>{caption}</h3>
                 </>
                 :
                 <>
-                    <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} ${caption.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{caption}</h3>
+                {
+                    caption.length > 300 ?
+                    <>
+                        <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} ${caption.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{caption.length > 300 ? `${caption.slice(0, 300)}...`: `${caption}`}</h3>
+                    </>
+                    :
+                    <>
+                        <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} ${caption.length < 50 ? 'text-center' : 'text-left pl-3'} text-black py-2`}>{caption}</h3>
+                    </>
+                }
                 </>
             }
 
@@ -30,12 +41,13 @@ const PostCard = ({post}) => {
             <div className='flex items-center gap-3'>
                 <div className="avatar">
                     <div className="w-12 rounded-full">
+                        {/* ########################################################## */}
                         <img className="avatar" src={profileImg} alt="" />
                     </div>
                 </div>
                 <div>
                     <h5 className="text-lg text-black font-[400] ">
-                        {userName}
+                        {name}
                     </h5>
                     <h6 className="my-0 text-sm">{post_time} AM</h6>
                 </div>

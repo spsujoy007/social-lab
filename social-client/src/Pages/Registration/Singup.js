@@ -40,6 +40,7 @@ const Singup = () => {
     const full_name = first_name + ' ' + last_name;
     const mobile = form.phone.value;
     const email = form.email.value;
+    const username = email.split('@')[0] + '_sl'
     const password = form.password.value;
 
       const formData = new FormData()
@@ -61,6 +62,7 @@ const Singup = () => {
               first_name,
               last_name,
               full_name,
+              username,
               mobile,
               email,
               password

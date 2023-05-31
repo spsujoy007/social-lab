@@ -2,26 +2,94 @@ import React, { useContext, useState } from 'react';
 import { IoMdClose, IoMdImages } from "react-icons/io"
 import { HiOutlineLocationMarker } from "react-icons/hi"
 import { TbPhotoPlus } from "react-icons/tb"
-import profileImg from '../../../assests/profileimg.jpg'
 import ModalCommon from '../../../Components/ModalCommon';
 import { crudContext } from '../../../Context/DataProvider';
+import moment from 'moment/moment';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const CreatePostHome = () => {
 
+    const {user} = useContext(AuthContext);
     const {getuserinfo: userdata} = useContext(crudContext)
-
+    
     const [selectPhoto, setSelectPhoto] = useState(true)
-    const [viewImage, setViewImage] = useState('')
+    const [viewImage, setViewImage] = useState('');
+    const [postImg, setPostImg] = useState('')
+    const [showModal, setShowModal] = useState(true)
+    const [loading, setLoading] = useState(false)
+    
     
     const handleSelectPhoto = (e) => {
-        const imgs = e.target.files[0]
+        const imgs = e.target.files[0];
         const img = URL.createObjectURL(imgs)
+        setPostImg(imgs)
         setViewImage(img)
-
+        
+    }
+    
+    
+    const handleSubmitPost = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        const form = e.target;
+        
+            if(postImg){
+            const formData = new FormData()
+            formData.append('file', postImg)
+            formData.append('upload_preset', 'social-lab');
+            formData.append('cloud_name', 'dfxhlbsf2');
+            fetch(`https://api.cloudinary.com/v1_1/dfxhlbsf2/upload`, {
+              method: "POST",
+              body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                const caption = form.caption.value;
+                const post_time = moment(new Date()).format();
+                const postImage = data.url;
+                const profileImg = userdata.photoURL;
+                const name = userdata.full_name;
+                const username = userdata.username;
+                    
+                const postBody = {
+                    caption, post_time, profileImg, name, username, postImage
+                }
+                if(data.url){
+                    storePostInfo(postBody)
+                }
+            })
+            }
+            else if (postImg === ''){
+                const caption = form.caption.value;
+                const post_time = moment(new Date()).format();
+                const postImage = '';
+                const profileImg = userdata.photoURL;
+                const name = userdata.full_name;
+                const username = userdata.username;
+                    
+                const postBody = {
+                    caption, post_time, profileImg, name, username, postImage
+                }
+                storePostInfo(postBody)
+            }
     }
 
-    const handleSubmitPost = (e) => {
-
+    function storePostInfo (postBody) {
+        fetch(`https://sociallab-be.vercel.app/createpost?email=${user?.email}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(postBody)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setLoading(false)
+            setShowModal(false)
+            setTimeout(() => {
+                setShowModal(true)
+            }, 3000)
+        })
     }
 
 
@@ -51,7 +119,9 @@ const CreatePostHome = () => {
                 </label>
             </div>
 
-        <ModalCommon>
+            {
+                showModal &&
+                <ModalCommon>
             <form onSubmit={handleSubmitPost}>
             <div>
                 <div className='flex items-center gap-x-2'>
@@ -113,11 +183,17 @@ const CreatePostHome = () => {
 
                 {/* post button here ******************* */}
                 <div>
-                    <button type='submit' className='w-full bg-primary text-white py-2 rounded-md mt-5'>POST</button>
+                    {
+                       loading ?
+                       <button type='submit' className='w-full bg-primary text-white py-2 rounded-md mt-5 loading'>Posting...</button>
+                       :
+                       <button type='submit' className='w-full bg-primary text-white py-2 rounded-md mt-5'>POST</button>
+                    }
                 </div>
             </div>
             </form>
         </ModalCommon>
+            }
         </div>
     );
 };

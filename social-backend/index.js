@@ -34,6 +34,7 @@ async function run(){
 
         app.post('/createpost', async(req, res) => {
           const email = req.query.email;
+          console.log(email)
           const verifieduser = usersCollection.findOne({email: email});
           if(verifieduser){
               const post_data = req.body;
@@ -43,7 +44,12 @@ async function run(){
           else{
             res.send("not verified user")
           }
-        })
+        }) // to create a post
+
+        app.get('/allposts', async(req, res) => {
+          const allposts = await postCollection.find({}).toArray()
+          res.send(allposts)
+        }) // to get all user posts
 
         app.get('/userdata', async(req, res) => {
           const email = req.query.email
@@ -53,7 +59,7 @@ async function run(){
         }) //get single user data
 
         app.get('/getAllUsers', async(req, res) => {
-            const result = await usersCollection.find({}).toArray()
+            const result = await usersCollection.find({}).sort({_id: -1}).toArray()
             res.send(result)
         }) //get all user data
     }

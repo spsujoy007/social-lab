@@ -13,7 +13,7 @@ const ModalCommon = ({children}) => {
     return (
         <div>
             <input type="checkbox" id="create_postModal" className="modal-toggle" />
-            <div className="modal bg-[#ffffff81]">
+            <div className="modal bg-[#ffffffbe]">
                 <div className="modal-box relative container ">
                     <label htmlFor="create_postModal" className="btn btn-sm btn-black btn-circle absolute right-2 top-2">✕</label>
                 <div className=''>

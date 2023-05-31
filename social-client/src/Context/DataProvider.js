@@ -12,7 +12,7 @@ const DataProvider = ({children}) => {
     // create user and store data to the database 
     async function createUserForDB(getUserDetails) {
         if(getUserDetails){
-        await fetch('http://localhost:5000/createuser', {
+        await fetch('https://sociallab-be.vercel.app/createuser', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -31,12 +31,26 @@ const DataProvider = ({children}) => {
     const {data: getuserinfo = [], refetch, isLoading} = useQuery({
         queryKey: ['getuserinfo'],
         queryFn: async () => {
-            // const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
-            const res = await fetch(`http://localhost:5000/userdata?email=sujoypaul728@gmail.com`)
+            // const res = await fetch(`https://sociallab-be.vercel.app/userdata?email=${user?.email}`)
+            const res = await fetch(`https://sociallab-be.vercel.app/userdata?email=sujoypaul728@gmail.com`)
             const data = await res.json()
             return data
         },
     })
+
+    setInterval(() => {refetch()}, 2000)
+
+
+    const {data: getAllPosts = []} = useQuery({
+        queryKey: ['getAllPosts'],
+        queryFn: async () => {
+            // const res = await fetch(`https://sociallab-be.vercel.app/userdata?email=${user?.email}`)
+            const res = await fetch(`https://sociallab-be.vercel.app/allposts`)
+            const data = await res.json()
+            return data
+        },
+    })
+
 
     
 
@@ -46,6 +60,7 @@ const DataProvider = ({children}) => {
     const datasValue = {
         createUserForDB,
         getuserinfo,
+        getAllPosts,
         refetch
     }
     //[*****************************************************************************************]
