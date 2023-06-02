@@ -7,6 +7,7 @@ import SearchBar from './SearchBarItem/SearchBar';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from 'react-query';
 import { crudContext } from '../../Context/DataProvider';
+import { Link } from 'react-router-dom';
 
 const InformationSide = () => {
     const {user} = useContext(AuthContext)
@@ -53,9 +54,11 @@ const InformationSide = () => {
 
                 </div>
                 
-                <button className='bg-gradient-to-r from-primary to-[#8AD7D1] text-white px-12 py-2 rounded-xl text-lg hover:scale-95 duration-300'>
+                <Link to={`/${userdata?.username}`}>
+                    <button className='bg-gradient-to-r from-primary to-[#8AD7D1] text-white px-12 py-2 rounded-xl text-lg hover:scale-95 duration-300'>
                     View Profile
                 </button>
+                </Link>
 
                 </div>
 

@@ -38,29 +38,13 @@ const DataProvider = ({children}) => {
         },
     })
 
-    setInterval(() => {refetch()}, 2000)
-
-
-    const {data: getAllPosts = []} = useQuery({
-        queryKey: ['getAllPosts'],
-        queryFn: async () => {
-            // const res = await fetch(`https://sociallab-be.vercel.app/userdata?email=${user?.email}`)
-            const res = await fetch(`https://sociallab-be.vercel.app/allposts`)
-            const data = await res.json()
-            return data
-        },
-    })
-
-
     
-
 
 
     //[*****************************************************************************************]
     const datasValue = {
         createUserForDB,
         getuserinfo,
-        getAllPosts,
         refetch
     }
     //[*****************************************************************************************]

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { BsFillChatSquareTextFill, BsHeart } from 'react-icons/bs'
 import { TbShare3 } from 'react-icons/tb'
@@ -5,6 +6,7 @@ import { TbShare3 } from 'react-icons/tb'
 const PostCard = ({post}) => {
 
     const {_id, profileImg, postImage, caption, name, email, post_time} = post
+    const postTime = moment(post_time).startOf('hour').fromNow();
 
     // button icons design css 
     const iconButtonDesign = `text-3xl hover:text-primary duration-300`
@@ -49,7 +51,7 @@ const PostCard = ({post}) => {
                     <h5 className="text-lg text-black font-[400] ">
                         {name}
                     </h5>
-                    <h6 className="my-0 text-sm">{post_time} AM</h6>
+                    <h6 className="my-0 text-sm">{postTime}</h6>
                 </div>
             </div>
 
