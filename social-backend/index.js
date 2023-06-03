@@ -2,6 +2,7 @@ const express = require('express')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express()
 const port = process.env.PORT || 5000
+// https://sociallab-be.vercel.app/
 const cors = require('cors');
 require('dotenv').config();
 
@@ -32,6 +33,7 @@ async function run(){
             res.send(result)
         }) //create account and get data of user
 
+
         app.post('/createpost', async(req, res) => {
           const email = req.query.email;
           console.log(email)
@@ -46,10 +48,12 @@ async function run(){
           }
         }) // to create a post
 
+
         app.get('/allposts', async(req, res) => {
-          const allposts = await postCollection.find({}).toArray()
+          const allposts = await postCollection.find({}).sort({_id: -1}).toArray()
           res.send(allposts)
         }) // to get all user posts
+
 
         app.get('/userdata', async(req, res) => {
           const email = req.query.email
@@ -58,10 +62,19 @@ async function run(){
           res.send(getuser)
         }) //get single user data
 
+        app.get('/userPersonaldata/:username', async(req, res) => {
+          const username = req.params.username
+          const query = {username: username};
+          const getuser = await usersCollection.findOne(query)
+          res.send(getuser)
+        }) //get single user data
+
+
         app.get('/getAllUsers', async(req, res) => {
             const result = await usersCollection.find({}).sort({_id: -1}).toArray()
             res.send(result)
         }) //get all user data
+
     }
 
     finally{}

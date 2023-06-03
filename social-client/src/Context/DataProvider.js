@@ -6,13 +6,13 @@ import { useQueries, useQuery } from 'react-query';
 export const crudContext = createContext()
 
 const DataProvider = ({children}) => {
-
+    const [callRefetch, setCallRefetch] = useState(false)
     const {user} = useContext(AuthContext)
 
     // create user and store data to the database 
     async function createUserForDB(getUserDetails) {
         if(getUserDetails){
-        await fetch('https://sociallab-be.vercel.app/createuser', {
+        await fetch('http://localhost:5000/createuser', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -26,13 +26,14 @@ const DataProvider = ({children}) => {
         })
         }
     }
+    
 
 
     const {data: getuserinfo = [], refetch, isLoading} = useQuery({
         queryKey: ['getuserinfo'],
         queryFn: async () => {
-            // const res = await fetch(`https://sociallab-be.vercel.app/userdata?email=${user?.email}`)
-            const res = await fetch(`https://sociallab-be.vercel.app/userdata?email=sujoypaul728@gmail.com`)
+            // const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/userdata?email=sujoypaul728@gmail.com`)
             const data = await res.json()
             return data
         },

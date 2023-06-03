@@ -7,7 +7,7 @@ import { crudContext } from '../../../Context/DataProvider';
 import moment from 'moment/moment';
 import { AuthContext } from '../../../Context/AuthProvider';
 
-const CreatePostHome = () => {
+const CreatePostHome = ({callRefetch}) => {
 
     const {user} = useContext(AuthContext);
     const {getuserinfo: userdata} = useContext(crudContext)
@@ -75,7 +75,7 @@ const CreatePostHome = () => {
     }
 
     function storePostInfo (postBody) {
-        fetch(`https://sociallab-be.vercel.app/createpost?email=${user?.email}`, {
+        fetch(`http://localhost:5000/createpost?email=${user?.email}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -84,8 +84,9 @@ const CreatePostHome = () => {
         })
         .then(res => res.json())
         .then(data => {
-            setLoading(false)
-            setShowModal(false)
+            setLoading(false) // set the loader
+            setShowModal(false) //for closing the modal
+            callRefetch() //refetch the data when post
             setTimeout(() => {
                 setShowModal(true)
             }, 3000)

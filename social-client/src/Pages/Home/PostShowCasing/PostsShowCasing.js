@@ -25,12 +25,16 @@ const PostsShowCasing = () => {
         </div>
     }
 
+    const callRefetch = () => {
+        refetch()
+    }
+
 
 
     return (
         <div className=' '>
             <div className='mb-6'>
-                <CreatePostHome></CreatePostHome>
+                <CreatePostHome callRefetch={callRefetch}></CreatePostHome>
             </div>
             <div className='grid grid-cols-1 gap-5'>
             {
