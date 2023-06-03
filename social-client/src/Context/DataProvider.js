@@ -2,12 +2,14 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from './AuthProvider';
 import { useQueries, useQuery } from 'react-query';
+import LoaderAnimation from '../Components/LoaderAnimation';
 
 export const crudContext = createContext()
 
 const DataProvider = ({children}) => {
-    const [callRefetch, setCallRefetch] = useState(false)
+    // const [callRefetch, setCallRefetch] = useState(false)
     const {user} = useContext(AuthContext)
+    console.log(user)
 
     // create user and store data to the database 
     async function createUserForDB(getUserDetails) {
@@ -29,26 +31,25 @@ const DataProvider = ({children}) => {
     
 
 
-    const {data: getuserinfo = [], refetch, isLoading} = useQuery({
+    const {data: getuserinfo = [], isLoading} = useQuery({
         queryKey: ['getuserinfo'],
         queryFn: async () => {
-            // const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
-            const res = await fetch(`http://localhost:5000/userdata?email=sujoypaul728@gmail.com`)
+            const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
             const data = await res.json()
+            console.log(data)
             return data
         },
     })
 
-    
+    if(isLoading){
+        return <LoaderAnimation></LoaderAnimation>
+    }
 
 
-    //[*****************************************************************************************]
     const datasValue = {
         createUserForDB,
-        getuserinfo,
-        refetch
+        getuserinfo
     }
-    //[*****************************************************************************************]
 
     return (
         <div>

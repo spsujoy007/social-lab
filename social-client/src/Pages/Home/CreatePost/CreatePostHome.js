@@ -87,6 +87,7 @@ const CreatePostHome = ({callRefetch}) => {
             setLoading(false) // set the loader
             setShowModal(false) //for closing the modal
             callRefetch() //refetch the data when post
+            setViewImage('')
             setTimeout(() => {
                 setShowModal(true)
             }, 3000)

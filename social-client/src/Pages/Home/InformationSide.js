@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 const InformationSide = () => {
     const {user} = useContext(AuthContext)
     const {getuserinfo: userdata} = useContext(crudContext)
+    
 
     return (
         <div className='top-10 sticky'>

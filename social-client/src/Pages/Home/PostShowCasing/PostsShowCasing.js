@@ -3,6 +3,7 @@ import PostCard from './PostCard';
 import CreatePostHome from '../CreatePost/CreatePostHome';
 import { useQuery } from 'react-query';
 import { InfinitySpin } from 'react-loader-spinner';
+import LoaderAnimation from '../../../Components/LoaderAnimation';
 
 const PostsShowCasing = () => {
 
@@ -17,12 +18,7 @@ const PostsShowCasing = () => {
     })
 
     if(isLoading){
-        return <div className='flex h-[100vh] justify-center items-center w-full'>
-            <InfinitySpin 
-                width='200'
-                color="#08B3CC"
-            />
-        </div>
+        return <LoaderAnimation></LoaderAnimation>
     }
 
     const callRefetch = () => {

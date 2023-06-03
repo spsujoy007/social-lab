@@ -54,6 +54,12 @@ async function run(){
           res.send(allposts)
         }) // to get all user posts
 
+        app.get('/myposts', async(req, res) => {
+          const username = req.query.username;
+          const query = {username: username}
+          const myposts = await postCollection.find(query).sort({_id: -1}).toArray()
+          res.send(myposts)
+        })
 
         app.get('/userdata', async(req, res) => {
           const email = req.query.email
