@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { crudContext } from '../../../Context/DataProvider';
@@ -33,7 +33,9 @@ const MyProfileMain = () => {
     }
 
     return (
-        <div className=' bg-[#ffffff] md:max-w-[1200px] mx-auto'>
+        <div className=' bg-[#f6f6f6]  '>
+            
+            <div className='md:max-w-[1200px] mx-auto'>
             <div className='w-full max-h-[400px] flex items-center overflow-hidden'>
                 <img className='w-full' src="http://res.cloudinary.com/dfxhlbsf2/image/upload/v1685680150/eq22obspufi919fkgevv.jpg" alt="" />
             </div>
@@ -44,14 +46,39 @@ const MyProfileMain = () => {
             <div className='flex justify-center mt-4'>
                 <div>
                     <h2 className='text-3xl text-center font-bold text-black'>{full_name}</h2>
-                    <p className='text-center mt-3 text-black whitespace-pre-line'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat nesciunt blanditiis consequuntur aliquid.</p>
+
+                    <div className='flex justify-center mt-5'>
+                    <div className="avatar-group -space-x-6">
+                        <div className="avatar border-0">
+                          <div className="w-9">
+                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                          </div>
+                        </div>
+                        <div className="avatar border-0">
+                          <div className="w-9">
+                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                          </div>
+                        </div>
+                        <div className="avatar border-0">
+                          <div className="w-9">
+                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                          </div>
+                        </div>
+                        <div className="avatar border-0 placeholder">
+                          <div className="w-9 bg-neutral-focus text-neutral-content">
+                            <span>+99</span>
+                          </div>
+                        </div>
+</div>
+                    </div>
+                    
                 </div>
             </div>
 
             {/* introduction  and posts */}
             <div className='flex lg:flex-row flex-col  gap-x-3 mt-20 md:p-5 p-2'>
                 <div className='lg:w-[40%]'>
-                    introduction
+                    <p className='text-left mt-3 text-black whitespace-pre-line'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat nesciunt blanditiis consequuntur aliquid.</p>
                 </div>
 
                 <div className='lg:w-[60%] '>
@@ -69,6 +96,7 @@ const MyProfileMain = () => {
 
                         </div>
                     </div>
+            </div>
             </div>
             
         </div>
