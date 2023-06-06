@@ -65,6 +65,8 @@ const Singup = () => {
               username,
               mobile,
               email,
+              followers: 0,
+              following: 0,
               password
             }
             // for store the data of user in backend 

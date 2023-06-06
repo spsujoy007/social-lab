@@ -1,5 +1,5 @@
 const express = require('express')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const port = process.env.PORT || 5000
 // https://sociallab-be.vercel.app/
@@ -59,6 +59,14 @@ async function run(){
           const query = {username: username}
           const myposts = await postCollection.find(query).sort({_id: -1}).toArray()
           res.send(myposts)
+        })
+
+        app.delete('/deletepost', async(req, res) => {
+          const id = req.query.id;
+          console.log(id)
+          const query = {_id: new ObjectId(id)}
+          const result = await postCollection.deleteOne(query)
+          res.send(result)
         })
 
         app.get('/userdata', async(req, res) => {

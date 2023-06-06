@@ -7,6 +7,7 @@ import LoaderAnimation from '../../../Components/LoaderAnimation';
 import CreatePostHome from '../CreatePost/CreatePostHome';
 import PostCard from '../PostShowCasing/PostCard';
 import { AuthContext } from '../../../Context/AuthProvider';
+import MyPostCards from './MyPostCards';
 
 const MyProfileMain = () => {
 
@@ -27,13 +28,13 @@ const MyProfileMain = () => {
         return <LoaderAnimation></LoaderAnimation>
     }
 
-    const callRefetch = () => {
+    function callRefetch ()  {
         refetch()
     }
 
     return (
-        <div className=' bg-[#f0f0f0aa] md:max-w-[1200px] mx-auto'>
-            <div className='w-full h-[400px] flex items-center overflow-hidden'>
+        <div className=' bg-[#ffffff] md:max-w-[1200px] mx-auto'>
+            <div className='w-full max-h-[400px] flex items-center overflow-hidden'>
                 <img className='w-full' src="http://res.cloudinary.com/dfxhlbsf2/image/upload/v1685680150/eq22obspufi919fkgevv.jpg" alt="" />
             </div>
             <div className='z-10 -mt-[100px] flex justify-center  overflow-hidden'>
@@ -43,26 +44,27 @@ const MyProfileMain = () => {
             <div className='flex justify-center mt-4'>
                 <div>
                     <h2 className='text-3xl text-center font-bold text-black'>{full_name}</h2>
-                    <p className='text-center mt-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat nesciunt blanditiis consequuntur aliquid.</p>
+                    <p className='text-center mt-3 text-black whitespace-pre-line'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat nesciunt blanditiis consequuntur aliquid.</p>
                 </div>
             </div>
 
             {/* introduction  and posts */}
-            <div className='flex gap-x-3 mt-20'>
-                <div className='w-[40%]'>
+            <div className='flex lg:flex-row flex-col  gap-x-3 mt-20 md:p-5 p-2'>
+                <div className='lg:w-[40%]'>
                     introduction
                 </div>
 
-                <div className='w-[60%] '>
+                <div className='lg:w-[60%] '>
                     <div className='mb-6'>
                         <CreatePostHome callRefetch={callRefetch}></CreatePostHome>
                         </div>
                         <div className='grid grid-cols-1 gap-5'>
                         {
-                            posts.map(post => <PostCard
+                            posts.map(post => <MyPostCards
                                 key={post._id}
                                 post={post}
-                            ></PostCard>)
+                                callRefetch={callRefetch}
+                            ></MyPostCards>)
                         }
 
                         </div>
