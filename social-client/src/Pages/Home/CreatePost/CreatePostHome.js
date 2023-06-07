@@ -6,11 +6,14 @@ import ModalCommon from '../../../Components/ModalCommon';
 import { crudContext } from '../../../Context/DataProvider';
 import moment from 'moment/moment';
 import { AuthContext } from '../../../Context/AuthProvider';
+import UserData from '../../../Hooks/userData';
+import UseUserData from '../../../Hooks/userData';
 
 const CreatePostHome = ({callRefetch}) => {
 
     const {user} = useContext(AuthContext);
-    const {getuserinfo: userdata} = useContext(crudContext)
+    // const {getuserinfo: userdata} = useContext(crudContext)
+    const userdata = UseUserData()
     
     const [selectPhoto, setSelectPhoto] = useState(true)
     const [viewImage, setViewImage] = useState('');

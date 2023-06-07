@@ -8,6 +8,7 @@ import CreatePostHome from '../CreatePost/CreatePostHome';
 import PostCard from '../PostShowCasing/PostCard';
 import { AuthContext } from '../../../Context/AuthProvider';
 import MyPostCards from './MyPostCards';
+import { IoHome } from 'react-icons/io5'
 
 const MyProfileMain = () => {
 
@@ -46,39 +47,58 @@ const MyProfileMain = () => {
             <div className='flex justify-center mt-4'>
                 <div>
                     <h2 className='text-3xl text-center font-bold text-black'>{full_name}</h2>
-
+                    <p className='text-center mt-3'>120 friend's</p>
                     <div className='flex justify-center mt-5'>
                     <div className="avatar-group -space-x-6">
-                        <div className="avatar border-0">
-                          <div className="w-9">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <div className="avatar border-2">
+                          <div className="w-10">
+                            <img alt='' src="https://i.pinimg.com/736x/35/05/45/3505452c97e4ceb824cc20885d58c844.jpg" />
                           </div>
                         </div>
-                        <div className="avatar border-0">
-                          <div className="w-9">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <div className="avatar border-2">
+                          <div className="w-10">
+                            <img alt='' src="https://cdn-cidba.nitrocdn.com/rjnSqSQQxmgpqhnoaOHlgyMuPkngIOQQ/assets/images/optimized/rev-4e8d05d/wp-content/uploads/2021/06/What-Are-The-Best-Semi-Formal-Outfits-For-Teenage-Guys.jpg" />
                           </div>
                         </div>
-                        <div className="avatar border-0">
-                          <div className="w-9">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <div className="avatar border-2">
+                          <div className="w-10">
+                            <img alt='' src="https://cdn.shopify.com/s/files/1/0266/6276/4597/products/300925023EMERALDGREEN_2_1024x1024.jpg?v=1674638043" />
                           </div>
                         </div>
-                        <div className="avatar border-0 placeholder">
-                          <div className="w-9 bg-neutral-focus text-neutral-content">
+                        <div className="avatar border-2 placeholder">
+                          <div className="w-10 bg-primary text-neutral-content">
                             <span>+99</span>
                           </div>
                         </div>
-</div>
+                    </div>
                     </div>
                     
                 </div>
             </div>
 
             {/* introduction  and posts */}
-            <div className='flex lg:flex-row flex-col  gap-x-3 mt-20 md:p-5 p-2'>
+            <div className='flex lg:flex-row flex-col  gap-x-5 mt-20 md:p-5 p-2'>
                 <div className='lg:w-[40%]'>
-                    <p className='text-left mt-3 text-black whitespace-pre-line'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat nesciunt blanditiis consequuntur aliquid.</p>
+                    <div>
+                        <b className='text-xl'>Introduction</b>
+                        <p className='text-left mt-3 text-black whitespace-pre-line'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat nesciunt blanditiis consequuntur aliquid.</p>
+                        <button className='py-2 w-full bg-white rounded-md mt-3 text-black hover:bg-black hover:text-white duration-300'>Edit bio</button>
+                    </div>
+                    
+                    <div className='mt-6 text-md'>
+                        <h2 className='flex items-center gap-2'><IoHome className='text-xl'></IoHome> Lives in <span className='font-bold'>Panchagarh, Rājshāhi, Bangladesh</span></h2>
+                        <button className='py-2 w-full bg-white rounded-md mt-2 text-black hover:bg-black hover:text-white duration-300'>Edit details</button>
+                    </div>
+
+                    <div className='mt-6 text-md'>
+                        <div className='flex gap-3 items-center flex-wrap'>
+                            <h2 className='p-2 rounded-full border-[1px]'>💻 Coding</h2>
+                            <h2 className='p-2 rounded-full border-[1px]'>📸 Photography</h2>
+                            <h2 className='p-2 rounded-full border-[1px]'>🎮 Video Games</h2>
+                            <h2 className='p-2 rounded-full border-[1px]'>🎧 Listen to music</h2>
+                        </div>
+                        <button className='py-2 w-full bg-white rounded-md mt-2 text-black hover:bg-black hover:text-white duration-300'>Edit Hobbies</button>
+                    </div>
                 </div>
 
                 <div className='lg:w-[60%] '>

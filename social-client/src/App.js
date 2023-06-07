@@ -6,7 +6,7 @@ import ModalCommon from './Components/ModalCommon';
 
 function App() {
   return (
-    <div className=" bg-secondary min-h-screen webBg scrollable-container">
+    <div data-theme="light" className="bg-secondary min-h-screen webBg scrollable-container">
       <RouterProvider router={routes}></RouterProvider>
       <Toaster></Toaster>
     </div>
