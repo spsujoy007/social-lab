@@ -17,7 +17,7 @@ const InformationSide = () => {
     return (
         <div className='top-10 sticky'>
 
-                    <div className='lg:mb-10 mt-7 lg:block hidden'>
+                    <div className='lg:mb-10 mt-1 lg:block hidden sticky top-[50px] px-2 bg-white pt-10 pb-4'>
                         <SearchBar></SearchBar>
                     </div>
 

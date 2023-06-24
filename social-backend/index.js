@@ -28,7 +28,6 @@ async function run(){
         
         app.post('/createuser', async(req, res) => {
             const userDetail = req.body;
-            console.log(userDetail)
             const result = await usersCollection.insertOne(userDetail);
             res.send(result)
         }) //create account and get data of user
@@ -36,7 +35,6 @@ async function run(){
 
         app.post('/createpost', async(req, res) => {
           const email = req.query.email;
-          console.log(email)
           const verifieduser = usersCollection.findOne({email: email});
           if(verifieduser){
               const post_data = req.body;
@@ -63,7 +61,6 @@ async function run(){
 
         app.delete('/deletepost', async(req, res) => {
           const id = req.query.id;
-          console.log(id)
           const query = {_id: new ObjectId(id)}
           const result = await postCollection.deleteOne(query)
           res.send(result)

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import { crudContext } from '../../../Context/DataProvider';
 import { useQuery } from 'react-query';
 import LoaderAnimation from '../../../Components/LoaderAnimation';
 import CreatePostHome from '../CreatePost/CreatePostHome';
-import PostCard from '../PostShowCasing/PostCard';
 import { AuthContext } from '../../../Context/AuthProvider';
 import MyPostCards from './MyPostCards';
 import { IoHome } from 'react-icons/io5'
@@ -92,10 +90,10 @@ const MyProfileMain = () => {
 
                     <div className='mt-6 text-md'>
                         <div className='flex gap-3 items-center flex-wrap'>
-                            <h2 className='p-2 rounded-full border-[1px]'>💻 Coding</h2>
-                            <h2 className='p-2 rounded-full border-[1px]'>📸 Photography</h2>
-                            <h2 className='p-2 rounded-full border-[1px]'>🎮 Video Games</h2>
-                            <h2 className='p-2 rounded-full border-[1px]'>🎧 Listen to music</h2>
+                            <h2 className='p-2 rounded-full border-[1px] hover:bg-white cursor-pointer'>💻 Coding</h2>
+                            <h2 className='p-2 rounded-full border-[1px] hover:bg-white cursor-pointer'>📸 Photography</h2>
+                            <h2 className='p-2 rounded-full border-[1px] hover:bg-white cursor-pointer'>🎮 Video Games</h2>
+                            <h2 className='p-2 rounded-full border-[1px] hover:bg-white cursor-pointer'>🎧 Listen to music</h2>
                         </div>
                         <button className='py-2 w-full bg-white rounded-md mt-2 text-black hover:bg-black hover:text-white duration-300'>Edit Hobbies</button>
                     </div>

@@ -3,8 +3,8 @@ import './Home.css'
 
 const Trending = () => {
     return (
-        <div className='rounded-xl commonShadow bg-white px-8 pt-8 pb-5 top-10 sticky'>
-            <div>
+        <div className='rounded-xl commonShadow bg-white  top-[80px] sticky'>
+            <div className='mt-7 px-8 pb-5 py-3'>
                 <h2 className='text-xl text-black font-bold'>Trend's for you</h2>
 
                 {/* trend or popular hashtags here...  */}
