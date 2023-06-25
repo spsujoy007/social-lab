@@ -11,13 +11,15 @@ import { Link } from 'react-router-dom';
 
 const InformationSide = () => {
     const {user} = useContext(AuthContext)
-    const {getuserinfo: userdata} = useContext(crudContext)
+    const {getuserinfo} = useContext(crudContext)
+
+    const {photoURL, full_name, followers, following, username} = getuserinfo
     
 
     return (
         <div className='top-10 sticky'>
 
-                    <div className='lg:mb-10 mt-1 lg:block hidden sticky top-[50px] px-2 bg-white pt-10 pb-4'>
+                    <div className='lg:mb-10 mt-1 lg:block hidden '>
                         <SearchBar></SearchBar>
                     </div>
 
@@ -29,18 +31,18 @@ const InformationSide = () => {
 
                 <div className='w-[160px] h-[160px] rounded-full overflow-hidden mx-auto -mt-[80px] z-10 border-4 border-y-primary border-x-white'>
                     {/* user photo ############################################################### */}
-                    <img className='z-10' src={userdata?.photoURL} alt="profile_image" />
+                    <img className='z-10' src={photoURL} alt="profile_image" />
                 </div>
 
                 <div className='mt-3 text-center px-7'>
                     {/* user name and bio  ########################################### */}
-                    <h3 className=' font-bold text-2xl text-[#323232]'>{userdata.full_name}</h3>
+                    <h3 className=' font-bold text-2xl text-[#323232]'>{full_name}</h3>
                     <p className='mt-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, architecto!</p>
 
 
                 <div className='flex mx-auto text-center my-3 py-2'>
                     <div className='w-1/2 text-center'>
-                        <p className='text-xl font-bold text-[#323232]'>10k</p>
+                        <p className='text-xl font-bold text-[#323232]'>{followers}</p>
                         <p className='mt-1 text-md'>Followers</p>
                     </div>
 
@@ -49,13 +51,13 @@ const InformationSide = () => {
                     </div> 
 
                     <div className='w-1/2 text-center'>
-                        <p className='text-xl font-bold text-[#323232]'>100</p>
+                        <p className='text-xl font-bold text-[#323232]'>{following}</p>
                         <p className='mt-1 text-md'>Following</p>
                     </div>
 
                 </div>
                 
-                <Link to={`/${userdata?.username}`}>
+                <Link to={`/${username}`}>
                     <button className='bg-gradient-to-r from-primary to-[#8AD7D1] text-white px-12 py-2 rounded-xl text-lg hover:scale-95 duration-300'>
                     View Profile
                 </button>

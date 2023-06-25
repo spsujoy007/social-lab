@@ -5,13 +5,7 @@ import Navbar from '../Pages/Shared/Header'
 const Main = () => {
     return (
         <div>
-            {/* <Header></Header> */}
-            <div className=''>
-                <Navbar></Navbar>
-                <div className='pt-10'>
-                    <Outlet></Outlet>
-                </div>
-            </div>
+            <Outlet></Outlet>
         </div>
     );
 };
