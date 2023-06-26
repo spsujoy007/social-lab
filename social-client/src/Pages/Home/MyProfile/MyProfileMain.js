@@ -7,11 +7,12 @@ import CreatePostHome from '../CreatePost/CreatePostHome';
 import { AuthContext } from '../../../Context/AuthProvider';
 import MyPostCards from './MyPostCards';
 import { IoHome } from 'react-icons/io5'
+import UseUserData from '../../../Hooks/userData';
 
 const MyProfileMain = () => {
 
-    const {user} = useContext(AuthContext)
-    const {getuserinfo: userdata} = useContext(crudContext)
+    // const {user} = useContext(AuthContext)
+    const userdata = UseUserData()
     const {full_name, username} = userdata
 
     const {data: posts = [], refetch, isLoading} = useQuery({

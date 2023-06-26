@@ -9,7 +9,6 @@ export const crudContext = createContext()
 const DataProvider = ({children}) => {
     // const [callRefetch, setCallRefetch] = useState(false)
     const {user} = useContext(AuthContext)
-    console.log(user)
 
     // create user and store data to the database 
     async function createUserForDB(getUserDetails) {
@@ -24,19 +23,15 @@ const DataProvider = ({children}) => {
         .then(res => res.json())
         .then(data => {
             toast.success('Account created')
-            console.log(data)
         })
         }
     }
-    
-
 
     const {data: getuserinfo = [], isLoading} = useQuery({
         queryKey: ['getuserinfo'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
             const data = await res.json()
-            console.log(data)
             return data
         },
     })
@@ -44,7 +39,6 @@ const DataProvider = ({children}) => {
     if(isLoading){
         return <LoaderAnimation></LoaderAnimation>
     }
-
 
     const datasValue = {
         createUserForDB,

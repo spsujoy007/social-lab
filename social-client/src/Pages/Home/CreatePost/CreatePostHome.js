@@ -12,7 +12,6 @@ import UseUserData from '../../../Hooks/userData';
 const CreatePostHome = ({callRefetch}) => {
 
     const {user} = useContext(AuthContext);
-    // const {getuserinfo: userdata} = useContext(crudContext)
     const userdata = UseUserData()
     
     const [selectPhoto, setSelectPhoto] = useState(true)

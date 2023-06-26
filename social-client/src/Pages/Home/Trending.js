@@ -1,11 +1,23 @@
 import React from 'react';
 import './Home.css'
+import { BiHomeAlt2 } from "react-icons/bi";
+import { RiNotificationLine } from "react-icons/ri";
+import { RxPerson } from "react-icons/rx";
+import { TbSettings2 } from "react-icons/tb";
 
 const Trending = () => {
     return (
         <div className='top-[40px] sticky'>
-            <div className='rounded-xl commonShadow bg-white '>
-                
+            <div className='rounded-xl commonShadow bg-white p-3 flex justify-center'>
+                <div className='flex items-center gap-5'>
+                    <button className='text-3xl flex items-center py-2 px-4 rounded-xl text-primary hover:bg-gray-100 hover:text-black duration-500'><BiHomeAlt2></BiHomeAlt2></button>
+
+                    <button className='text-3xl flex items-center py-2 px-4 rounded-xl text-primary hover:bg-gray-100 hover:text-black duration-500'><RxPerson></RxPerson></button>
+
+                    <button className='text-3xl flex items-center py-2 px-4 rounded-xl text-primary hover:bg-gray-100 hover:text-black duration-500'><RiNotificationLine></RiNotificationLine></button>
+
+                    <button className='text-3xl flex items-center py-2 px-4 rounded-xl text-primary hover:bg-gray-100 hover:text-black duration-500'><TbSettings2></TbSettings2></button>
+                </div>
             </div>
             <div className='rounded-xl commonShadow bg-white '>
             <div className='mt-7 px-8 pb-5 py-3'>

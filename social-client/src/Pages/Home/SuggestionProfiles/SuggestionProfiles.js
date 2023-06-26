@@ -1,28 +1,29 @@
 import React from 'react';
 import SingleProfile from './SingleProfile';
+import { useQuery } from 'react-query';
+import LoaderAnimation from '../../../Components/LoaderAnimation';
 
 const SuggestionProfiles = () => {
+    // const {user} = useContext(AuthContext);
+    // const userData = UseUserData()
 
-    const suggestedProfiles = [
-        {
-            _id: '1',
-            profileImg: "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
-            userName: "Kaiser Tanvir",
-            email: "kaisertv@gmail.com"
-        },
-        {
-            _id: '2',
-            profileImg: "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
-            userName: "Foysal",
-            email: "foysal@gmail.com"
-        },
-        {
-            _id: '3',
-            profileImg: "https://fastly.picsum.photos/id/88/200/200.jpg?hmac=7_fl_u460sA-SBPikcqpeADpHOtrqhLVlh3rhHUX5tk",
-            userName: "Asadullah al Galib",
-            email: "galib@gmail.com"
+    const {data: suggestedProfiles = [], isLoading, refetch} = useQuery({
+        queryKey: ["suggestedProfiles"],
+        queryFn: async() => {
+            const res = await fetch(`http://localhost:5000/getAllUsers`)
+            const data = await res.json()
+            return data
         }
-    ]
+    })
+
+
+    refetch()
+
+    if(isLoading){
+        return <LoaderAnimation></LoaderAnimation>
+    }
+
+
 
     return (
         <div className='bg-whiterounded-xl rounded-xl overflow-hidden bg-[#ffffff81]  p-5 mt-5 '>

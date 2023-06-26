@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import webLogo from '../../assests/sitelogo.png'
 import './Header.css'
 
 const Navbar = () => {
@@ -15,7 +16,9 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to={'/'} className="py-2 px-5 ml-20 normal-case text-xl text-primary">Social-Lab</Link>
+        <Link to={'/'} className="py-0 px-5 ml-20 normal-case text-xl text-primary">
+          <img className='lg:w-12 w-10' src={webLogo} alt="" />
+        </Link>
 
       </div>
       <div className="navbar-center hidden lg:flex">

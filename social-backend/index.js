@@ -46,6 +46,12 @@ async function run(){
           }
         }) // to create a post
 
+        app.post('/likepost', async(req, res) => {
+          const id = req.query.id;
+          const query = {_id: new ObjectId(id)};
+          // const like 
+        })
+
 
         app.get('/allposts', async(req, res) => {
           const allposts = await postCollection.find({}).sort({_id: -1}).toArray()

@@ -1,10 +1,17 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Navbar from '../Pages/Shared/Header'
+import { Outlet, useLocation } from 'react-router-dom';
+import Navbar from '../Pages/Shared/Header';
 
 const Main = () => {
+
+    const isHome = useLocation()
+    console.log(isHome)
+
     return (
         <div>
+            {
+                isHome.pathname !== '/' && <Navbar></Navbar>
+            }
             <Outlet></Outlet>
         </div>
     );

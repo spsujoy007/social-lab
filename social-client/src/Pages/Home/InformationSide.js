@@ -8,10 +8,10 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from 'react-query';
 import { crudContext } from '../../Context/DataProvider';
 import { Link } from 'react-router-dom';
+import UseUserData from '../../Hooks/userData';
 
 const InformationSide = () => {
-    const {user} = useContext(AuthContext)
-    const {getuserinfo} = useContext(crudContext)
+    const getuserinfo = UseUserData()
 
     const {photoURL, full_name, followers, following, username} = getuserinfo
     
