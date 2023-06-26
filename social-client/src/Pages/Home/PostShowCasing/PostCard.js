@@ -7,6 +7,7 @@ import { EmailIcon, EmailShareButton, FacebookIcon, FacebookMessengerIcon, Faceb
 const PostCard = ({post}) => {
     const {_id, profileImg, postImage, caption, name, email, post_time} = post
     const postTime = moment(post_time).startOf('minute').fromNow();
+    const [showFullText, setShowFullText] = useState(false)
 
     // button icons design css 
 
@@ -21,7 +22,15 @@ const PostCard = ({post}) => {
             {
                 postImage === "" ?
                 <>
-                <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2 whitespace-pre-line`}>{caption}</h3>
+                    {
+                        showFullText ?
+                        <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2 whitespace-pre-line duration-300`}>{caption}</h3>
+                        :
+                        <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2 whitespace-pre-line`}>{caption.length > 600 ? <>${caption.slice(0, 600)}... <button 
+                            onClick={() => setShowFullText(true)}
+                            className='text-primary'
+                        >see more</button> </> : `${caption}`}</h3>
+                    }
                 </>
                 :
                 <>
