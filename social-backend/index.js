@@ -58,6 +58,14 @@ async function run(){
         }) // click to like post
 
 
+        app.get('/likes', async(req, res) => {
+            const postId = req.query.postid;
+            const query = {_id: new ObjectId(postId)}
+            const result = await likesCollection.find(query).toArray()
+            res.send(result)
+        })
+
+
 
         app.get('/allposts', async(req, res) => {
           const allposts = await postCollection.find({}).sort({_id: -1}).toArray()
@@ -81,8 +89,8 @@ async function run(){
         })
 
 
-        app.get('/userdata', async(req, res) => {
-          const email = req.query.email
+        app.get('/userdata/:email', async(req, res) => {
+          const email = req.params.email
           const query = {email: email};
           const getuser = await usersCollection.findOne(query)
           res.send(getuser)

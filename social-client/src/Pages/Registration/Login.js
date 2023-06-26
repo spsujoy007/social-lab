@@ -7,8 +7,7 @@ import { toast } from 'react-hot-toast';
 
 
 const Login = () => {
-
-  const {loginuser} = useContext(AuthContext)
+  const {loginuser, setLoading: startLoading} = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -33,6 +32,7 @@ const Login = () => {
               toast.success('Loging successful')
               navigate('/')
               setLoading(false)
+              startLoading(true)
             }
         })
         .catch(error => console.error(error))

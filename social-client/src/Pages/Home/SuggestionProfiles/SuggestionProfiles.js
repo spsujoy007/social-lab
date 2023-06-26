@@ -16,9 +16,6 @@ const SuggestionProfiles = () => {
         }
     })
 
-
-    refetch()
-
     if(isLoading){
         return <LoaderAnimation></LoaderAnimation>
     }

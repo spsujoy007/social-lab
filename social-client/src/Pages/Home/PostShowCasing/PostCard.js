@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useState } from 'react';
-import { BsFillChatSquareTextFill, BsHeart } from 'react-icons/bs'
+import { BsFillChatSquareTextFill, BsHeart, BsHeartFill } from 'react-icons/bs'
 import { TbShare3 } from 'react-icons/tb'
 import { EmailIcon, EmailShareButton, FacebookIcon, FacebookMessengerIcon, FacebookMessengerShareButton, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 import UseUserData from '../../../Hooks/userData';
@@ -10,6 +10,7 @@ const PostCard = ({post}) => {
     const {_id, profileImg, postImage, caption, name, username, post_time} = post
     const postTime = moment(post_time).startOf('minute').fromNow();
     const [showFullText, setShowFullText] = useState(false)
+    const [liked, setLiked] = useState(false)
 
     // button icons design css 
 
@@ -35,6 +36,7 @@ const PostCard = ({post}) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                setLiked(true)
             })
         }
     }
@@ -94,9 +96,18 @@ const PostCard = ({post}) => {
 
             <div className='flex items-center gap-x-6'>
                 {/* ############################# */}
-                <button 
-                    onClick={handleClickToLike}
-                className={`text-3xl hover:text-primary duration-300`}><BsHeart></BsHeart></button>
+                {
+                    liked ?
+                    <button 
+                        
+                        className={`text-3xl text-primary hover:text-black duration-300`}><BsHeartFill></BsHeartFill>
+                    </button>
+                    :
+                    <button 
+                        onClick={handleClickToLike}
+                        className={`text-3xl hover:text-primary duration-300`}><BsHeart></BsHeart>
+                    </button>
+                }
                 <button className={`text-3xl hover:text-primary duration-300`}><BsFillChatSquareTextFill></BsFillChatSquareTextFill></button>
                 <div className="dropdown dropdown-top dropdown-end">
                     <label tabIndex={0} className="">

@@ -5,7 +5,6 @@ import Navbar from '../Pages/Shared/Header';
 const Main = () => {
 
     const isHome = useLocation()
-    console.log(isHome)
 
     return (
         <div>

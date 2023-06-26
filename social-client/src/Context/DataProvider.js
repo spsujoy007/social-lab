@@ -27,22 +27,22 @@ const DataProvider = ({children}) => {
         }
     }
 
-    const {data: getuserinfo = [], isLoading} = useQuery({
-        queryKey: ['getuserinfo'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
-            const data = await res.json()
-            return data
-        },
-    })
+    // const {data: getuserinfo = [], isLoading} = useQuery({
+    //     queryKey: ['getuserinfo'],
+    //     queryFn: async () => {
+    //         const res = await fetch(`http://localhost:5000/userdata?email=${user?.email}`)
+    //         const data = await res.json()
+    //         return data
+    //     },
+    // })
 
-    if(isLoading){
-        return <LoaderAnimation></LoaderAnimation>
-    }
+    // if(isLoading){
+    //     return <LoaderAnimation></LoaderAnimation>
+    // }
 
     const datasValue = {
         createUserForDB,
-        getuserinfo
+        // getuserinfo
     }
 
     return (
