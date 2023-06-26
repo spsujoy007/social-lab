@@ -25,6 +25,7 @@ async function run(){
     try{
         const usersCollection = client.db('Social-Lab').collection("users");
         const postCollection = client.db('Social-Lab').collection("posts");
+        const likesCollection = client.db('Social-Lab').collection("PostLikes");
         
         app.post('/createuser', async(req, res) => {
             const userDetail = req.body;
@@ -49,8 +50,11 @@ async function run(){
         app.post('/likepost', async(req, res) => {
           const id = req.query.id;
           const query = {_id: new ObjectId(id)};
-          // const like 
-        })
+          const likeInfo = req.body;
+          const result = await likesCollection.insertOne(likeInfo)
+          res.send(result)
+        }) // click to like post
+
 
 
         app.get('/allposts', async(req, res) => {
