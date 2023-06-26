@@ -47,9 +47,11 @@ async function run(){
           }
         }) // to create a post
 
+
         app.post('/likepost', async(req, res) => {
           const id = req.query.id;
           const query = {_id: new ObjectId(id)};
+          console.log(query)
           const likeInfo = req.body;
           const result = await likesCollection.insertOne(likeInfo)
           res.send(result)
@@ -62,12 +64,14 @@ async function run(){
           res.send(allposts)
         }) // to get all user posts
 
+
         app.get('/myposts', async(req, res) => {
           const username = req.query.username;
           const query = {username: username}
           const myposts = await postCollection.find(query).sort({_id: -1}).toArray()
           res.send(myposts)
         })
+
 
         app.delete('/deletepost', async(req, res) => {
           const id = req.query.id;
@@ -76,12 +80,14 @@ async function run(){
           res.send(result)
         })
 
+
         app.get('/userdata', async(req, res) => {
           const email = req.query.email
           const query = {email: email};
           const getuser = await usersCollection.findOne(query)
           res.send(getuser)
         }) //get single user data
+        
 
         app.get('/userPersonaldata/:username', async(req, res) => {
           const username = req.params.username

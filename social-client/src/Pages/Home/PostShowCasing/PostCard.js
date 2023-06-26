@@ -3,13 +3,41 @@ import React, { useState } from 'react';
 import { BsFillChatSquareTextFill, BsHeart } from 'react-icons/bs'
 import { TbShare3 } from 'react-icons/tb'
 import { EmailIcon, EmailShareButton, FacebookIcon, FacebookMessengerIcon, FacebookMessengerShareButton, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
+import UseUserData from '../../../Hooks/userData';
 
 const PostCard = ({post}) => {
-    const {_id, profileImg, postImage, caption, name, email, post_time} = post
+    const userData = UseUserData() //logged in user data
+    const {_id, profileImg, postImage, caption, name, username, post_time} = post
     const postTime = moment(post_time).startOf('minute').fromNow();
     const [showFullText, setShowFullText] = useState(false)
 
     // button icons design css 
+
+
+    const handleClickToLike = () => {
+        const getLikeTime = new Date()
+
+        if(userData.email.length){
+            const likeInformation = {
+                postId: _id,
+                liker_email: userData?.email,
+                PosterUsername: username,
+                likeTime: getLikeTime
+            }
+    
+            fetch(`http://localhost:5000/likepost?id=${_id}`, {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(likeInformation)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        }
+    }
 
 
     return (
@@ -26,7 +54,7 @@ const PostCard = ({post}) => {
                         showFullText ?
                         <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2 whitespace-pre-line duration-300`}>{caption}</h3>
                         :
-                        <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2 whitespace-pre-line`}>{caption.length > 600 ? <>${caption.slice(0, 600)}... <button 
+                        <h3 className={`${caption.length < 100 && 'text-xl'} ${caption.length > 100 && 'text-lg'} 'text-left pl-3 text-black py-2 whitespace-pre-line`}>{caption.length > 600 ? <>{caption.slice(0, 600)}... <button 
                             onClick={() => setShowFullText(true)}
                             className='text-primary'
                         >see more</button> </> : `${caption}`}</h3>
@@ -65,7 +93,10 @@ const PostCard = ({post}) => {
             </div>
 
             <div className='flex items-center gap-x-6'>
-                <button className={`text-3xl hover:text-primary duration-300`}><BsHeart></BsHeart></button>
+                {/* ############################# */}
+                <button 
+                    onClick={handleClickToLike}
+                className={`text-3xl hover:text-primary duration-300`}><BsHeart></BsHeart></button>
                 <button className={`text-3xl hover:text-primary duration-300`}><BsFillChatSquareTextFill></BsFillChatSquareTextFill></button>
                 <div className="dropdown dropdown-top dropdown-end">
                     <label tabIndex={0} className="">
